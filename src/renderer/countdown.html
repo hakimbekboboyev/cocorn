@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .countdown-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(16px);
+      border: 4px solid #6366f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.5);
+      animation: pop 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .countdown-number {
+      font-size: 84px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+    @keyframes pop {
+      0% {
+        transform: scale(0.4);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown-circle">
+    <span class="countdown-number" id="countdownNum">3</span>
+  </div>
+
+  <script>
+    const numEl = document.getElementById('countdownNum');
+    if (window.electronAPI && window.electronAPI.onCountdownNumber) {
+      window.electronAPI.onCountdownNumber((n) => {
+        numEl.textContent = n;
+        const circle = document.querySelector('.countdown-circle');
+        circle.style.animation = 'none';
+        void circle.offsetWidth; // trigger reflow
+        circle.style.animation = 'pop 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      });
+    }
+  </script>
+</body>
+</html>

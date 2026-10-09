@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoCorn Controls</title>
+  <link rel="stylesheet" href="controls.css">
+</head>
+<body>
+  <div class="controls-pill" id="controlsPill">
+    <!-- Drag handle & Indicator -->
+    <div class="drag-zone" title="Surish uchun ushlang">
+      <span class="rec-dot"></span>
+      <span class="timer-display" id="timerDisplay">00:00</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Action Buttons -->
+    <div class="actions">
+      <!-- Pause / Resume -->
+      <button class="btn btn-tool" id="pauseBtn" title="Vaqtincha to'xtatish (Pauza)">
+        <svg id="pauseIcon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+        <svg id="resumeIcon" style="display: none;" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </button>
+
+      <!-- Smart Auto-Zoom -->
+      <button class="btn btn-tool active" id="zoomBtn" title="⚡ Smart Auto-Zoom (Avtomatik yaqinlashish)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+      </button>
+
+      <!-- Draw / Annotate (Arrows, shapes, pen) -->
+      <button class="btn btn-tool" id="drawBtn" title="Chizish va Strelkalar (D)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+          <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+          <path d="M2 2l7.586 7.586"/>
+          <circle cx="11" cy="11" r="2"/>
+        </svg>
+      </button>
+
+      <!-- Screenshot -->
+      <button class="btn btn-tool" id="screenshotBtn" title="Screenshot olish">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </button>
+
+      <!-- Divider -->
+      <div class="mini-divider"></div>
+
+      <!-- Stop & Finish -->
+      <button class="btn btn-stop" id="stopBtn" title="Yozishni tugatish va saqlash">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <rect x="5" y="5" width="14" height="14" rx="2"/>
+        </svg>
+      </button>
+
+      <!-- Discard / Trash -->
+      <button class="btn btn-trash" id="cancelBtn" title="Bekor qilish (O'chirish)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="controls.js"></script>
+</body>
+</html>

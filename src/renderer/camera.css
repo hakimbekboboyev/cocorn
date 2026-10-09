@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.bubble-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 0 3.5px #6366f1;
+  background-color: #0f172a;
+  -webkit-app-region: drag;
+  cursor: grab;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.bubble-container:active {
+  cursor: grabbing;
+}
+
+#cameraVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transform: scaleX(-1); /* Default mirrored */
+  pointer-events: none;
+}
+
+#cameraVideo.unmirrored {
+  transform: scaleX(1);
+}
+
+.bubble-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: auto;
+}
+
+.bubble-container:hover .bubble-overlay {
+  opacity: 1;
+}
+
+.drag-handle {
+  font-size: 15px;
+  color: #94a3b8;
+  letter-spacing: 2px;
+  cursor: grab;
+}
+
+.controls-row {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  -webkit-app-region: no-drag;
+}
+
+.controls-row button {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.controls-row button:hover {
+  background: #6366f1;
+  transform: scale(1.1);
+}
+
+.controls-row button.active {
+  background: #6366f1;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+}
+
+.controls-row button.danger:hover {
+  background: #ef4444;
+}

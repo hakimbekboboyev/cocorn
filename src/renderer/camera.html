@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camera Bubble</title>
+  <link rel="stylesheet" href="camera.css">
+</head>
+<body>
+  <div class="bubble-container" id="bubbleContainer">
+    <video id="cameraVideo" autoplay playsinline muted></video>
+    
+    <!-- Hover Action Controls Overlay -->
+    <div class="bubble-overlay">
+      <div class="drag-handle" title="Surish uchun ushlang">⋮⋮</div>
+      <div class="controls-row">
+        <button id="sizeSmallBtn" title="Kichik (140px)">S</button>
+        <button id="sizeMedBtn" class="active" title="O'rtacha (200px)">M</button>
+        <button id="sizeLargeBtn" title="Katta (280px)">L</button>
+        <button id="flipBtn" title="Kamerani teskari qilish (Mirror)">⇋</button>
+        <button id="closeBtn" title="Yopish" class="danger">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="camera.js"></script>
+</body>
+</html>

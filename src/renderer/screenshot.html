@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoCorn Clean Snip</title>
+  <link rel="stylesheet" href="screenshot.css">
+</head>
+<body>
+  <!-- Top Snip Mode Bar (Windows Snipping Tool & Mac Cmd+Shift+5 style) -->
+  <div class="top-snip-bar" id="topSnipBar">
+    <button class="top-snip-btn active" id="modeAreaBtn" title="Hududni qirqish">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2v14a2 2 0 0 0 2 2h14"></path>
+        <path d="M18 22V8a2 2 0 0 0-2-2H2"></path>
+      </svg>
+      <span>Hudud</span>
+    </button>
+
+    <button class="top-snip-btn" id="modeFullBtn" title="Butun ekranni rasmga olish">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+        <line x1="8" y1="21" x2="16" y2="21"></line>
+        <line x1="12" y1="17" x2="12" y2="21"></line>
+      </svg>
+      <span>Butun ekran</span>
+    </button>
+
+    <div class="top-divider"></div>
+
+    <button class="top-snip-btn cancel" id="modeCancelBtn" title="Bekor qilish (Esc)">
+      ✕
+    </button>
+  </div>
+
+  <!-- Persistent annotations layer (drawing, shapes, arrows, blur) -->
+  <canvas id="drawCanvas"></canvas>
+
+  <!-- Interactive crop, dimming overlay and handles -->
+  <canvas id="overlayCanvas"></canvas>
+
+  <!-- In-place text input editor -->
+  <div id="textInputContainer" style="display: none;">
+    <textarea id="textInput" placeholder="Matn yozing..." rows="1"></textarea>
+  </div>
+
+  <!-- Dimension Badge (Mac style) -->
+  <div class="size-badge" id="sizeBadge" style="display: none;">0 × 0</div>
+
+  <!-- Floating Action Toolbar below selection -->
+  <div class="screenshot-toolbar" id="screenshotToolbar" style="display: none;">
+    <!-- Annotation Tools -->
+    <div class="tb-group">
+      <button class="tb-tool-btn" data-tool="arrow" title="Strelka (Arrow)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="19" x2="19" y2="5"></line>
+          <polyline points="9 5 19 5 19 15"></polyline>
+        </svg>
+      </button>
+
+      <button class="tb-tool-btn" data-tool="rect" title="To'rtburchak (Rectangle)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="3" ry="3"></rect>
+        </svg>
+      </button>
+
+      <button class="tb-tool-btn" data-tool="circle" title="Doira (Circle)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+        </svg>
+      </button>
+
+      <button class="tb-tool-btn" data-tool="pen" title="Qalam (Pen)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+          <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+          <path d="M2 2l7.586 7.586"></path>
+        </svg>
+      </button>
+
+      <button class="tb-tool-btn" data-tool="text" title="Matn (Text)">
+        <span style="font-weight: 800; font-size: 14px;">T</span>
+      </button>
+
+      <button class="tb-tool-btn" data-tool="blur" title="Maxfiy joyni xiralashtirish (Blur)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="tb-divider"></div>
+
+    <!-- Color Palette -->
+    <div class="tb-group palette-group">
+      <button class="color-dot active" data-color="#ef4444" style="--c: #ef4444;" title="Qizil"></button>
+      <button class="color-dot" data-color="#f59e0b" style="--c: #f59e0b;" title="Sariq"></button>
+      <button class="color-dot" data-color="#10b981" style="--c: #10b981;" title="Yashil"></button>
+      <button class="color-dot" data-color="#3b82f6" style="--c: #3b82f6;" title="Ko'k"></button>
+      <button class="color-dot" data-color="#ffffff" style="--c: #ffffff;" title="Oq"></button>
+    </div>
+
+    <div class="tb-divider"></div>
+
+    <!-- Undo / Clear Actions -->
+    <div class="tb-group">
+      <button class="tb-tool-btn" id="undoBtn" title="Orqaga qaytarish (Cmd+Z)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1 4 1 10 7 10"></polyline>
+          <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="tb-divider"></div>
+
+    <!-- Export Action Buttons -->
+    <div class="tb-group">
+      <button class="tb-btn primary" id="copyBtn" title="Clipboardga nusxa olish (Enter / 2x Click)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        Nusxa olish
+      </button>
+
+      <button class="tb-btn" id="saveBtn" title="Desktopga saqlash (Cmd+S)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+          <polyline points="17 21 17 13 7 13 7 21"></polyline>
+          <polyline points="7 3 7 8 15 8"></polyline>
+        </svg>
+        Saqlash
+      </button>
+
+      <button class="tb-btn cancel" id="cancelBtn" title="Bekor qilish (Esc)">
+        ✕
+      </button>
+    </div>
+  </div>
+
+  <script src="screenshot.js"></script>
+</body>
+</html>

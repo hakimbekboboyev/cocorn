@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+out/
+build/mac/
+build/mac-arm64/
+build/win/
+build/win-unpacked/
+
+# Temp & Artifacts
+.pytest_cache/
+*.log
+*.tmp
+*.webm
+*.mp4
+*.dmg
+*.exe
+*.zip
+*.tar.gz
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo

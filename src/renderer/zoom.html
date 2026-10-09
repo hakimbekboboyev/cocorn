@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoCorn Smart Zoom & Focus</title>
+  <link rel="stylesheet" href="zoom.css">
+</head>
+<body>
+  <!-- Offscreen live screen capture video for optical magnification -->
+  <video id="screenVideo" autoplay playsinline muted style="display: none;"></video>
+
+  <!-- Fullscreen Dimming / Spotlight Canvas -->
+  <canvas id="spotlightCanvas"></canvas>
+
+  <!-- Floating Smooth Focus Lens -->
+  <div class="focus-lens" id="focusLens">
+    <canvas id="lensCanvas" width="300" height="300"></canvas>
+    <div class="lens-ring"></div>
+    <div class="lens-badge">2.0x FOKUS</div>
+  </div>
+
+  <script src="zoom.js"></script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoCorn</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Bar -->
+    <header class="app-header">
+      <div class="logo-area">
+        <img src="assets/logo.png" class="brand-logo" alt="CoCorn Logo">
+        <div>
+          <h1>CoCorn</h1>
+          <p class="subtitle">Zamonaviy va qulay ekran yozuvchisi</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="btn-quick-screenshot" id="quickScreenshotBtn" title="Tezkor screenshot olish">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          Screenshot
+        </button>
+        <button class="btn-icon-header" id="settingsBtn" title="Shortcut sozlamalari">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+        <div class="status-badge" id="statusBadge">
+          <span class="status-dot"></span>
+          <span id="statusText">Tayyor</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content: Setup View -->
+    <main class="setup-view" id="setupView">
+      <!-- Recording Mode Switcher -->
+      <section class="mode-selector">
+        <label class="mode-tab active" data-mode="screen-cam">
+          <input type="radio" name="recMode" value="screen-cam" checked>
+          <div class="tab-content">
+            <span class="tab-icon">🖥️ + 📹</span>
+            <span class="tab-title">Ekran + Kamera</span>
+            <span class="tab-desc">Aylana veb-kamera bilan</span>
+          </div>
+        </label>
+
+        <label class="mode-tab" data-mode="screen-only">
+          <input type="radio" name="recMode" value="screen-only">
+          <div class="tab-content">
+            <span class="tab-icon">🖥️</span>
+            <span class="tab-title">Faqat Ekran</span>
+            <span class="tab-desc">Kamerasiz yozish</span>
+          </div>
+        </label>
+
+        <label class="mode-tab" data-mode="cam-only">
+          <input type="radio" name="recMode" value="cam-only">
+          <div class="tab-content">
+            <span class="tab-icon">📹</span>
+            <span class="tab-title">Faqat Kamera</span>
+            <span class="tab-desc">To'liq veb-kamera videosi</span>
+          </div>
+        </label>
+      </section>
+
+      <!-- Source Selection (Screen / Window) -->
+      <section class="section-card" id="sourceCard">
+        <div class="section-header">
+          <div class="source-type-nav">
+            <button class="source-type-btn active" id="tabScreensBtn" type="button">
+              <span>🖥️ Butun ekran</span>
+            </button>
+            <button class="source-type-btn" id="tabWindowsBtn" type="button">
+              <span>🪟 Alohida dastur</span>
+            </button>
+          </div>
+          <button class="btn-refresh" id="refreshSourcesBtn" title="Manbalarni yangilash">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 4v6h-6M1 20v-6h6"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            Yangilash
+          </button>
+        </div>
+        <div class="sources-grid" id="sourcesGrid">
+          <!-- Dynamic sources injected here -->
+          <div class="sources-loading">Ekranlar qidirilmoqda...</div>
+        </div>
+      </section>
+
+      <!-- Audio & Video Devices -->
+      <section class="section-card">
+        <div class="settings-grid">
+          <!-- Microphone -->
+          <div class="setting-item">
+            <label for="micSelect">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+              </svg>
+              Mikrofon
+            </label>
+            <select id="micSelect" class="form-select"></select>
+            <!-- Live Audio VU Meter -->
+            <div class="vu-meter-container" title="Mikrofon signali darajasi">
+              <div class="vu-meter-bar" id="vuMeterBar"></div>
+            </div>
+          </div>
+
+          <!-- Camera -->
+          <div class="setting-item" id="camSettingItem">
+            <label for="camSelect">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+              </svg>
+              Veb-kamera
+            </label>
+            <select id="camSelect" class="form-select"></select>
+          </div>
+
+          <!-- Quality & FPS -->
+          <div class="setting-item">
+            <label for="qualitySelect">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+              </svg>
+              Sifat va FPS
+            </label>
+            <select id="qualitySelect" class="form-select">
+              <option value="1080p60">1080p (60 FPS - Yuqori sifat)</option>
+              <option value="1080p30" selected>1080p (30 FPS - Standart)</option>
+              <option value="720p30">720p (30 FPS - Yengil)</option>
+            </select>
+          </div>
+        </div>
+      <!-- Smart Auto-Zoom Settings -->
+      <section class="section-card auto-zoom-card">
+        <div class="section-header">
+          <div class="auto-zoom-title">
+            <span class="sparkle-icon">⚡</span>
+            <div>
+              <h3>Smart Auto-Zoom</h3>
+              <p class="section-sub">Kursor to'xtagan va bosilgan joylarga video avtomatik va silliq yaqinlashadi</p>
+            </div>
+          </div>
+          <!-- Switch -->
+          <label class="switch">
+            <input type="checkbox" id="autoZoomToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="auto-zoom-options" id="autoZoomOptions">
+          <div class="option-row">
+            <label>Yaqinlashish darajasi (Zoom Level):</label>
+            <div class="zoom-level-buttons">
+              <button type="button" class="btn-level" data-level="1.4">1.4x (Yumshoq)</button>
+              <button type="button" class="btn-level active" data-level="1.6">1.6x (Optimal)</button>
+              <button type="button" class="btn-level" data-level="1.8">1.8x (Kuchli)</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Start Button Action Bar -->
+      <div class="start-action-container">
+        <button class="btn-start-record" id="startRecordBtn">
+          <span class="btn-rec-circle"></span>
+          <span>Yozishni boshlash</span>
+        </button>
+        <p class="start-hint">Boshlaganingizda ekranda 3-2-1 hisoblagich va boshqaruv paneli paydo bo'ladi</p>
+      </div>
+    </main>
+
+    <!-- Preview View (Post-Recording) -->
+    <main class="preview-view" id="previewView" style="display: none;">
+      <div class="preview-header">
+        <div class="success-icon">✓</div>
+        <div>
+          <h2>Video tayyor!</h2>
+          <p class="preview-meta" id="videoMetaText">Davomiyligi: 00:00 • Hajmi: 0 MB</p>
+        </div>
+      </div>
+
+      <div class="video-container">
+        <video id="previewPlayer" controls playsinline></video>
+      </div>
+
+      <div class="preview-actions">
+        <button class="btn-action primary" id="saveMp4Btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          MP4 qilib saqlash (Tavsiya etiladi)
+        </button>
+
+        <button class="btn-action secondary" id="saveWebmBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          WebM qilib tezkor saqlash
+        </button>
+
+        <button class="btn-action outline" id="newRecordBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"/>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+          </svg>
+          Yangi video yozish
+        </button>
+      </div>
+
+      <div id="saveStatusMessage" class="save-status-msg" style="display: none;"></div>
+    </main>
+
+    <!-- Settings / Shortcuts Modal -->
+    <div class="modal-overlay" id="settingsModal" style="display: none;">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title-area">
+            <h3>⚙️ Klaviatura Shortcutlari</h3>
+            <p class="modal-subtitle">Istalgan amal uchun o'zingizga qulay klavishlar birikmasini sozlang</p>
+          </div>
+          <button class="modal-close-btn" id="closeSettingsBtn">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="shortcuts-list" id="shortcutsList">
+            <!-- Dynamically populated rows -->
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-action outline" id="resetShortcutsBtn">Standart holatga qaytarish</button>
+          <button class="btn-action primary" id="doneSettingsBtn">Tayyor</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

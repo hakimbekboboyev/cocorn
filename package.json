@@ -1,0 +1,67 @@
+{
+  "name": "cocorn",
+  "version": "1.0.0",
+  "description": "CoCorn - Zamonaviy va qulay ekran yozuvchisi (Mac va Windows)",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.cocorn.recorder",
+    "productName": "CoCorn",
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.video",
+      "icon": "build/icon.icns",
+      "target": [
+        "dmg"
+      ],
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false
+    },
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "asarUnpack": [
+      "**/node_modules/ffmpeg-static/**/*"
+    ],
+    "files": [
+      "src/**/*",
+      "build/icon.png",
+      "build/icon.icns",
+      "build/trayIcon.png",
+      "build/trayIcon@2x.png",
+      "build/trayIconTemplate.png",
+      "build/trayIconTemplate@2x.png",
+      "node_modules/**/*",
+      "package.json"
+    ]
+  },
+  "keywords": [
+    "screen-recorder",
+    "electron",
+    "webrtc",
+    "screen-capture",
+    "video-recorder",
+    "screenshot",
+    "annotation"
+  ],
+  "author": "Hakimbek Boboyev <hakimbekboboyev@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^34.0.0",
+    "electron-builder": "^26.15.3"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.3.0",
+    "fluent-ffmpeg": "^2.1.3"
+  }
+}

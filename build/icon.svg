@@ -1,0 +1,107 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1024" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="50%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <!-- Corn Kernel Warm Gradient -->
+    <linearGradient id="cornGrad" x1="200" y1="150" x2="800" y2="850" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="30%" stop-color="#FBBF24"/>
+      <stop offset="70%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+
+    <!-- Husk Leaf Gradient -->
+    <linearGradient id="leafGrad" x1="200" y1="600" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="50%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+
+    <!-- Recording Ruby Glow -->
+    <linearGradient id="recGrad" x1="400" y1="400" x2="624" y2="624" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF4B72"/>
+      <stop offset="100%" stop-color="#E11D48"/>
+    </linearGradient>
+
+    <!-- Golden Ambient Glow -->
+    <radialGradient id="ambientGlow" cx="50%" cy="45%" r="45%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#EF4444" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Inner Shadow / Bevel Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="24" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- macOS App Squircle Container -->
+  <rect x="32" y="32" width="960" height="960" rx="220" fill="url(#bgGrad)"/>
+  <rect x="32" y="32" width="960" height="960" rx="220" stroke="rgba(255, 255, 255, 0.12)" stroke-width="4"/>
+
+  <!-- Ambient Golden Glow -->
+  <circle cx="512" cy="480" r="380" fill="url(#ambientGlow)"/>
+
+  <!-- Main Graphic Container with Shadow -->
+  <g filter="url(#softShadow)">
+    <!-- Husk Leaves (Base) -->
+    <path d="M 360 740 C 300 700 240 580 270 440 C 310 580 390 680 480 750 Z" fill="url(#leafGrad)" opacity="0.9"/>
+    <path d="M 664 740 C 724 700 784 580 754 440 C 714 580 634 680 544 750 Z" fill="url(#leafGrad)" opacity="0.9"/>
+
+    <!-- Corn Cob Silhouette / Body -->
+    <path d="M 512 180 
+             C 630 180 710 270 710 440 
+             C 710 610 630 760 512 760 
+             C 394 760 314 610 314 440 
+             C 314 270 394 180 512 180 Z" 
+          fill="url(#cornGrad)"/>
+
+    <!-- Corn Cob Kernel Texture Marks -->
+    <g stroke="rgba(255, 255, 255, 0.28)" stroke-width="6" stroke-linecap="round">
+      <!-- Horizontal row arches -->
+      <path d="M 440 270 Q 512 285 584 270"/>
+      <path d="M 390 350 Q 512 370 634 350"/>
+      <path d="M 360 440 Q 512 465 664 440"/>
+      <path d="M 370 530 Q 512 555 654 530"/>
+      <path d="M 400 620 Q 512 640 624 620"/>
+      <path d="M 440 700 Q 512 715 584 700"/>
+
+      <!-- Vertical kernel grid tracks -->
+      <path d="M 440 230 C 430 380 430 580 450 720"/>
+      <path d="M 584 230 C 594 380 594 580 574 720"/>
+    </g>
+
+    <!-- Center Camera / Record Aperture Housing (Circular Lens) -->
+    <circle cx="512" cy="460" r="145" fill="#0F172A" stroke="#1E293B" stroke-width="8"/>
+    <circle cx="512" cy="460" r="132" fill="#090D16" stroke="rgba(255, 255, 255, 0.15)" stroke-width="3"/>
+
+    <!-- Glowing Red Recording Aperture Core -->
+    <circle cx="512" cy="460" r="82" fill="url(#recGrad)" filter="url(#glow)"/>
+    <circle cx="512" cy="460" r="62" fill="#FF1E4B"/>
+
+    <!-- Lens Glint / Highlight -->
+    <ellipse cx="482" cy="430" rx="36" ry="18" transform="rotate(-30 482 430)" fill="white" opacity="0.45"/>
+    <circle cx="548" cy="485" r="8" fill="white" opacity="0.3"/>
+
+    <!-- Cute Viewfinder Corner Brackets -->
+    <path d="M 330 330 L 300 330 L 300 360" stroke="#FDE047" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 694 330 L 724 330 L 724 360" stroke="#FDE047" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 300 560 L 300 590 L 330 590" stroke="#FDE047" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 724 560 L 724 590 L 694 590" stroke="#FDE047" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- "REC" Badge at Top of Cob -->
+    <rect x="442" y="105" width="140" height="42" rx="21" fill="#E11D48"/>
+    <circle cx="468" cy="126" r="6" fill="#FFFFFF"/>
+    <text x="486" y="133" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" letter-spacing="3">REC</text>
+  </g>
+</svg>

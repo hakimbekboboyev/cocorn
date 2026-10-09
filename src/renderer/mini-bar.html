@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoCorn Mini Toolbar</title>
+  <link rel="stylesheet" href="mini-bar.css">
+</head>
+<body>
+  <div class="mini-bar-pill" id="miniBarPill">
+    <!-- Brand Drag Zone -->
+    <div class="brand-zone" title="CoCorn Screen Recorder">
+      <span class="brand-emoji">🌽</span>
+      <span class="brand-text">CoCorn</span>
+    </div>
+
+    <div class="bar-divider"></div>
+
+    <!-- Main Record Button (Primary) -->
+    <button class="record-btn" id="recordBtn" title="Yozishni boshlash (Enter)">
+      <span class="rec-dot"></span>
+      <span class="btn-label">Yozish</span>
+    </button>
+
+    <!-- Screenshot Button -->
+    <button class="tool-btn" id="screenshotBtn" title="Screenshot olish">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+        <circle cx="12" cy="13" r="4"/>
+      </svg>
+      <span>Screenshot</span>
+    </button>
+
+    <div class="bar-divider"></div>
+
+    <!-- Quick Feature Toggles -->
+    <div class="toggles-group">
+      <!-- Microphone Toggle -->
+      <button class="toggle-btn active" id="micToggle" title="Mikrofon: Yoqilgan">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" y1="19" x2="12" y2="23"/>
+          <line x1="8" y1="23" x2="16" y2="23"/>
+        </svg>
+      </button>
+
+      <!-- Camera Bubble Toggle -->
+      <button class="toggle-btn" id="camToggle" title="Veb-kamera doirasi: O'chirilgan">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="8"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </button>
+
+      <!-- Smart Auto-Zoom Toggle -->
+      <button class="toggle-btn active" id="zoomToggle" title="⚡ Auto-Zoom: Yoqilgan">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="bar-divider"></div>
+
+    <!-- Dashboard & Close -->
+    <div class="aux-group">
+      <button class="aux-btn" id="dashboardBtn" title="Asosiy oynani ochish (Sozlamalar va videolar)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+
+      <button class="aux-btn close" id="closeBtn" title="Yopish (Esc)">
+        ✕
+      </button>
+    </div>
+  </div>
+
+  <script src="mini-bar.js"></script>
+</body>
+</html>
